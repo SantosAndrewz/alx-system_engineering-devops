@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#Using the previous command, displays lines containing the bash word.
+#Allows you to easily get the PID of your Bash process.
+
+./1-list_your_processes | awk "/bash/"
