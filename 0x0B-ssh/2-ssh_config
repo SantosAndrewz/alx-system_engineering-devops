@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# a configulation file for my local SSH client.
+Host *
+IdentityFile ~/.ssh/school
+PasswordAuthentication no
