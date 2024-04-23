@@ -8,12 +8,22 @@ import sys
 
 
 def gather_employee_todo_progress(userId):
-    # gets the employee's todo progress using hisemployee ID.
+    '''
+    gets the employee's todo progress using his employee ID=userId.
+
+    Args:
+        userId (int): user ID of the employee.
+
+    Returns:
+        None
+
+    Prints employee's name, tasks completed and title, total tasks, progress.
+    '''
 
     # REST API urls given
     original_url = 'https://jsonplaceholder.typicode.com'
-    todos_url = f"{original_url}/todos?userId"
-    user_url = f"{original_url}/users/userId"
+    todos_url = f"{original_url}/todos?userId={userId}"
+    user_url = f"{original_url}/users/{userId}"
 
     # Checking if userId provided is an integer
     try:
