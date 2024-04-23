@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-'''
-Uses a given REST API, returns information about his/her TODO list progress.
-'''
+# Uses a given REST API, returns information about his/her TODO list progress.
 
 import requests
 import sys
