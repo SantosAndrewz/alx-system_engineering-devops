@@ -52,8 +52,6 @@ def gather_employee_todo_progress(userId):
         file_csv = f"{userId}.csv"
         with open(file_csv, mode='w', newline='') as file_csv_write:
             file_csv_writer = csv.writer(file_csv_write)
-            file_csv_writer.writerow(["userId", "user_name",
-                                     "task_completed_status", "title"])
 
             '''exporting the data into the CSV and display of progress'''
             for todo in todos:
@@ -61,12 +59,6 @@ def gather_employee_todo_progress(userId):
                                          else "False")
                 file_csv_writer.writerow([userId, user_name,
                                          task_completed_status, todo["title"]])
-
-                '''Display csv file data'''
-                print(f'{userId}, {user_name}, {task_completed_status}, \
-{todo["title"]}')
-
-        print(f"Data successfully exported to '{file_csv}'")
 
     except requests.exceptions.RequestException as e:
         print("Failed to fetch data:", e)
