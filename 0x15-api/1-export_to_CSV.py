@@ -42,7 +42,7 @@ def gather_employee_todo_progress(userId):
         '''Using the provided REST API to gather employee information'''
         user_data = requests.get(user_url)
         user_data_json = user_data.json()
-        user_name = user_data_json["name"]
+        user_name = user_data_json["username"]
 
         '''Getting todo list of the employees.'''
         todos_data = requests.get(todos_url)
@@ -51,7 +51,7 @@ def gather_employee_todo_progress(userId):
         '''creating the CSV file to save in.'''
         file_csv = f"{userId}.csv"
         with open(file_csv, mode='w', newline='') as file_csv_write:
-            file_csv_writer = csv.writer(file_csv_write)
+            file_csv_writer = csv.writer(file_csv_write, quoting=csv.QUOTE_ALL)
 
             '''exporting the data into the CSV and display of progress'''
             for todo in todos:
