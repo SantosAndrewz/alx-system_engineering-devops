@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-'''Uses a given REST API, returns information about his/her TODO progress.'''
+'''
+Uses a given REST API, returns information about his/her TODO progress.
+
+Usage:
+    python script.py <userId>
+
+    where <userId> is the employee's ID
+'''
 
 import requests
 import sys
@@ -53,7 +60,7 @@ def gather_employee_todo_progress(userId):
 
         '''Displaying the task title'''
         for task in tasks_completed:
-            print(f"\t {task['title]}")
+            print(f"\t {task['title']}")
 
     except requests.exceptions.RequestException as e:
         print("Failed to fetch data:", e)
@@ -63,7 +70,7 @@ def gather_employee_todo_progress(userId):
 if __name__ == "__main__":
 
     if len(sys.argv) != 2:
-        print("Failure!, Use python script.py <userId>")
+        priint("Failure!, Use python script.py <userId>")
         sys.exit(1)
     userId = int(sys.argv[1])
     gather_employee_todo_progress(userId)
