@@ -56,7 +56,7 @@ def gather_employee_todo_progress(userId):
         todos_progress = f"{num_tasks_completed}/{total_tasks}"
 
         '''Displaying todos progress'''
-        print(f'Employee {user_name} is done with tasks ({todos_progress}): ')
+        print(f'Employee {user_name} is done with tasks({todos_progress}):')
 
         '''Displaying the task title'''
         for task in tasks_completed:
