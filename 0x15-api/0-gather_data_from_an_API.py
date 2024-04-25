@@ -53,11 +53,10 @@ def gather_employee_todo_progress(userId):
         num_tasks_completed = len(tasks_completed)
 
         '''Computing todos progress of the employee'''
-        todos_progress = (num_tasks_completed/total_tasks)
+        todos_progress = f"{num_tasks_completed}/{total_tasks}"
 
         '''Displaying todos progress'''
-        print(f'Employee {user_name} is done with \
-({num_tasks_completed}/{total_tasks}): ')
+        print(f'Employee {user_name} is done with tasks ({todos_progress}): ')
 
         '''Displaying the task title'''
         for task in tasks_completed:
@@ -71,7 +70,7 @@ def gather_employee_todo_progress(userId):
 if __name__ == "__main__":
 
     if len(sys.argv) != 2:
-        priint("Failure!, Use python script.py <userId>")
+        print("Failure!, Use python script.py <userId>")
         sys.exit(1)
     userId = int(sys.argv[1])
     gather_employee_todo_progress(userId)
