@@ -49,14 +49,15 @@ def gather_employee_todo_progress(userId):
 
         '''Computing total tasks and tasks completed.'''
         total_tasks = len(todos)
-        tasks_completed = (todo for todo in todos if todo['completed'])
+        tasks_completed = [todo for todo in todos if todo['completed']]
         num_tasks_completed = len(tasks_completed)
 
         '''Computing todos progress of the employee'''
         todos_progress = (num_tasks_completed/total_tasks)
 
         '''Displaying todos progress'''
-        print(f'Employee {user_name} is done with tasks ({todos_progress}):')
+        print(f'Employee {user_name} is done with \
+({num_tasks_completed}/{total_tasks}): ')
 
         '''Displaying the task title'''
         for task in tasks_completed:
