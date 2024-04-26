@@ -49,15 +49,15 @@ def exports_employee_todo_progress_to_json(userId):
         todos = todos_data.json()
 
         '''Arranging data in the required format'''
-        jsn_fmt = {f'"{userId}"': []}
+        jsn_fmt = {f'{userId}': []}
 
         for todo in todos:
             task_completed_status = (True if todo["completed"]
                                      else False)
 
-            jsn_fmt[f'"{userId}"'].append({"task": todo["title"],
-                                    "completed": task_completed_status,
-                                    "username": user_name})
+            jsn_fmt[f'{userId}'].append({"task": todo["title"],
+                                         "completed": task_completed_status,
+                                         "username": user_name})
 
         ''' creating the JSON file to save in'''
         file_jsn = f"{userId}.json"
