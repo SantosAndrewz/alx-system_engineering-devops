@@ -26,15 +26,8 @@ def number_of_subscribers(subreddit):
     usr_header = {"User-Agent": "My_user"}
     rsp = requests.get(url, headers=usr_header, allow_redirects=False)
 
-    if rsp.ok:
-        try:
-            rsp_data = rsp.json()
-            return rsp_data.get("data", {}).get("subscribers", 0)
-        except ValueError as e:
-            print(f"Error decoding JSON response: {e}")
-            print(f"Response text: {rsp.text}")
-            return 0
-    else:
-        print(f"Request failed with status code {rsp.status_code}")
-        print(f"Response text: {rsp.text}")
+    if rsp.status_code >= 300:
         return 0
+
+    rsp_data = rsp.json()
+    return rsp_data.get("data").get("subscribers")
