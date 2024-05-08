@@ -23,7 +23,7 @@ def number_of_subscribers(subreddit):
     usr_header = {"User-Agent": "My_user"}
     rsp = requests.get(url, headers=usr_header, allow_redirects=False)
 
-    if rsp.status_code == 200:
+    if rsp.ok:
         rsp_data = rsp.json()
         return rsp_data.get("data").get("subscribers")
     else:
