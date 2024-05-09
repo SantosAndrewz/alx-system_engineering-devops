@@ -19,12 +19,14 @@ def number_of_subscribers(subreddit):
         int: Number of of subscribers if subreddit valid else 0.
     """
 
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    usr_header = {"User-Agent": "My_user"}
-    rsp = requests.get(url, headers=usr_header, allow_redirects=False)
+    url = f'https://www.reddit.com/r/subreddit/about.json'
+    headers = {"User-Agent": "My_user"}
+    rsp = requests.get(url, headers=headers, allow_redirects=False)
 
     if rsp.ok:
+        print(rsp)
         rsp_data = rsp.json()
+        print(rep_data)
         return rsp_data.get("data").get("subscribers")
     else:
         return 0
