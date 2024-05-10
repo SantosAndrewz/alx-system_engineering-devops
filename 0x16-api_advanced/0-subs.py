@@ -21,13 +21,15 @@ def number_of_subscribers(subreddit):
     """
 
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"}
+    headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y;\
+rv:42.0) Gecko/20100101 Firefox/42.0"}
 
     try:
         rsp = requests.get(url, headers=headers, allow_redirects=False)
         print(rsp)
 
         if rsp.status_code == 200:
+            rsp_data = rsp.json()
             return rsp_data.get("data").get("subscribers")
         else:
             return 0
