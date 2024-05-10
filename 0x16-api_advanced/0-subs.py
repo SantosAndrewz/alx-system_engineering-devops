@@ -6,6 +6,7 @@ Return: Number of of subscribers for a given valid subreddit else 0.
 """
 
 import requests
+import time
 
 
 def number_of_subscribers(subreddit):
@@ -19,14 +20,20 @@ def number_of_subscribers(subreddit):
         int: Number of of subscribers if subreddit valid else 0.
     """
 
-    url = f'https://www.reddit.com/r/subreddit/about.json'
-    headers = {"User-Agent": "My_user"}
-    rsp = requests.get(url, headers=headers, allow_redirects=False)
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"}
 
-    if rsp.ok:
+    try:
+        rsp = requests.get(url, headers=headers, allow_redirects=False)
         print(rsp)
-        rsp_data = rsp.json()
-        print(rep_data)
-        return rsp_data.get("data").get("subscribers")
-    else:
-        return 0
+
+        if rsp.status_code == 200:
+            return rsp_data.get("data").get("subscribers")
+        else:
+            return 0
+
+    except Exception as e:
+
+        print(f"An error occurred: {str(e)}")
+
+    time.sleep(4)
