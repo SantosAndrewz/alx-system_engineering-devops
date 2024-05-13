@@ -2,5 +2,5 @@
 exec { 'fix-wordpress':
 	command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
 	path => '/usr/local/bin/:/bin/',
-	subscribe => File['/var/www/html/wp-settings.php'],
+	subscribe => File['/var/www/html/wp-settings.php']
 }
