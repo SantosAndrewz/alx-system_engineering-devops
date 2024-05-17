@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Script with commands to install Nginx on Web Server web-01
+
+# update packages
+sudo apt-get update
+
+# install Nginx
+sudo apt-get -y install nginx
+
+# Configure uncomplicated firewall to Nginx
+sudo ufw allow "Nginx HTTP"
+
+# Create index.html page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Test Nginx for Syntax errors
+sudo nginx -t
+
+# Restart Nginx
+sudo service nginx start
