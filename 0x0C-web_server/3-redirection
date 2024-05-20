@@ -18,7 +18,10 @@ sudo nginx -t
 
 # Making a 301 permanent redirection.
 r_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/SantosAndrewz permanent;"
-sudo sed -i "s/server_name _;/$r_string/" /etc/nginx/sites-enabled/default
+sudo sed -i "s/server_name _;/$r_string/" /etc/nginx/sites-available/default
+
+# Test Nginx for Syntax errors
+sudo nginx -t
 
 # Restart Nginx
 sudo service nginx start
