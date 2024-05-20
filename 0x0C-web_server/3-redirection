@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# script automatically configures a new Ubuntu machine to make a 301-redirection.
+
+# update packages
+sudo apt-get update
+
+# install Nginx
+sudo apt-get -y install nginx
+
+# Configure uncomplicated firewall to Nginx
+sudo ufw allow "Nginx HTTP"
+
+# Create index.html page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Test Nginx for Syntax errors
+sudo nginx -t
+
+# Making a 301 permanent redirection.
+r_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/SantosAndrewz permanent;"
+sudo sed -i "s/server_name _;/$r_string/" /etc/nginx/sites-enabled/default
+
+# Restart Nginx
+sudo service nginx start
