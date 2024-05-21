@@ -7,8 +7,12 @@ sudo apt-get update
 # install Nginx
 sudo apt-get -y install nginx
 
+# Start Nginx
+sudo service nginx start
+
 # Configure uncomplicated firewall to Nginx
 sudo ufw allow "Nginx HTTP"
+sudo ufw --force enable
 
 # Create index.html page
 echo "Hello World!" | sudo tee /var/www/html/index.html
@@ -17,11 +21,11 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 sudo nginx -t
 
 # Making a 301 permanent redirection.
-r_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/SantosAndrewz permanent;"
-sudo sed -i "s/server_name _;/$r_string/" /etc/nginx/sites-available/default
+r_string="    rewrite ^/redirect_me https://www.google.com permanent;"
+sudo sed -i "/server_name _;/a \ \ \ \ $r_string" /etc/nginx/sites-available/default
 
 # Test Nginx for Syntax errors
 sudo nginx -t
 
 # Restart Nginx
-sudo service nginx start
+sudo service nginx restart
