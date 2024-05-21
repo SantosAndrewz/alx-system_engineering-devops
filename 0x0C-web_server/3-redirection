@@ -17,12 +17,25 @@ sudo ufw --force enable
 # Create index.html page
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
-# Test Nginx for Syntax errors
-sudo nginx -t
+SERVER_CONFIG="
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
 
-# Making a 301 permanent redirection.
-r_string="    rewrite ^/redirect_me https://www.google.com permanent;"
-sudo sed -i "/server_name _;/a \ \ \ \ $r_string" /etc/nginx/sites-available/default
+	# Make a permanent redirection for /redirect_me
+	location = /redirect_me {
+		return 301 https://www.google.com;
+	}
+}"
+
+# Write server configuration to the default site file
+echo "$SERVER_CONFIG" | sudo tee /etc/nginx/sites-enabled/default
 
 # Test Nginx for Syntax errors
 sudo nginx -t
