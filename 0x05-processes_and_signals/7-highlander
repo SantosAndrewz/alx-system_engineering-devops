@@ -2,7 +2,7 @@
 # script displays "To infinity and beyond" indefinitely then "I am invincible!!!" on ^C.
 
 # setting up a trap for SIGTERM
-trap "echo 'I am invisible!!!'" SIGTERM
+trap "echo 'I am invincible!!!'" SIGTERM
 
 # Infinity loop
 while true;
