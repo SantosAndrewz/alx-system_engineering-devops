@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# script indefinately writes I am alive to a file /tmp/my_process, sleep = 2s
+
+while true; do
+	echo "I am alive!" >> "/tmp/my_process"
+	sleep 2
+done
