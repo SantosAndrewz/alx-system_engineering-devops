@@ -10,7 +10,7 @@ case "$cmd" in
 		echo "manage_my_process started"
 		;;
 	stop)
-                if [ -e " /var/run/my_process.pid" ]; then
+                if [ -e "/var/run/my_process.pid" ]; then
 			pkill -f './manage_my_process' && rm /var/run/my_process.pid
 			echo "manage_my_process stopped"
 		fi
@@ -21,6 +21,6 @@ case "$cmd" in
 		echo "manage_my_process restarted"
 		;;
 	*)
-		echo "manage_my_process {start|stop|restart}"
+		echo "Usage: manage_my_process {start|stop|restart}"
 		;;
 esac
